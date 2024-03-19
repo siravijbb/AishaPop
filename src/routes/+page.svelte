@@ -61,7 +61,7 @@ function ClearLimit() {
 
 <head>
 
-	<title>Document</title>
+	<title>Aisha Pop - {ClientPop} Popped</title>
 </head>
 
 <body class="h-screen w-full bg-[#ecfee6] font-[itim]">
