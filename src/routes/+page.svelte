@@ -63,7 +63,7 @@
 	}
 
 	function ImageChangePress() {
-		audio.src = "/AishaPop/hey.ogg";
+		audio.src = "/AishaPop/hey.mp3";
 		audio.play();
 			ImageName = "/AishaPop/2.jpg";
 
@@ -75,7 +75,7 @@
 	}
 	onMount(() => {
 		GetData();
-		audio = new Audio();
+		audio = new Audio("/AishaPop/hey.mp3");
 		let interval = setInterval(ClearLimit, 60000); // Poll every 5 seconds
 		return () => {
 			clearInterval(interval);
@@ -92,7 +92,7 @@
 	<Navbar />
 	<div class="w-full mx-auto ">
 
-		<button on:click={fetchData} on:touchstart={fetchData} on:keydown={fetchData}  on:mousedown ={ImageChangePress} on:mouseup ={ImageChangeDePress} on:touchstart|preventDefault ={ImageChangePress} on:touchend|preventDefault ={ImageChangeDePress} on:keydown|preventDefault={ImageChangePress} on:keyup|preventDefault={ImageChangeDePress} class="mx-auto bg-[#ecfee6] h-screen w-full flex flex-col items-center">
+		<button on:click={fetchData} on:touchstart={fetchData} on:keyup={fetchData}  on:mousedown ={ImageChangePress} on:mouseup ={ImageChangeDePress} on:touchstart|preventDefault ={ImageChangePress} on:touchend|preventDefault ={ImageChangeDePress} on:keydown|preventDefault={ImageChangePress} on:keyup|preventDefault={ImageChangeDePress} class="mx-auto bg-[#ecfee6] h-screen w-full flex flex-col items-center">
 			<h1 class="mx-auto text-center text-4xl absolute bottom-10">Aisha Pop
 				<p class="bottom-0">{ClientPop}</h1>
 
