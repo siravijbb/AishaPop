@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-let TotalPop = 3100;
+let TotalPop = 3900;
 /// STATE
 /// 0:Terminated Service at Station
 /// 1:Arriving Station
@@ -34,7 +34,7 @@ export const POST = async ({ request }) => {
 
 };
 
-export const GET = async ({ request }) => {
+export const PUT = async ({ request }) => {
 	const { AishaPop, Authentication } = await request.json();
 	if (AishaPop == true && (Authentication === 'trueButNotReally')) {
 		console.log('TotalPop:', TotalPop);

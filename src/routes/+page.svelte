@@ -1,11 +1,14 @@
-<script>
+<script lang="ts">
 	import Navbar from './components/Navbar.svelte';
 	import { onMount } from 'svelte';
 	let AddLimit = 0;
 	let ClientPop = 0;
 	let ImageName = "/AishaPop/1.jpg";
 	let OnClick = false;
-function ClearLimit() {
+	let audio :any;
+
+
+	function ClearLimit() {
 		AddLimit = 0;
 	}
 	async function fetchData() {
@@ -36,7 +39,7 @@ function ClearLimit() {
 	async function GetData() {
 			const response = await fetch('/api/add',
 				{
-					method: 'GET',
+					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json'
 					},
@@ -60,7 +63,8 @@ function ClearLimit() {
 	}
 
 	function ImageChangePress() {
-
+		audio.src = "/AishaPop/hey.ogg";
+		audio.play();
 			ImageName = "/AishaPop/2.jpg";
 
 	}
@@ -71,6 +75,7 @@ function ClearLimit() {
 	}
 	onMount(() => {
 		GetData();
+		audio = new Audio();
 		let interval = setInterval(ClearLimit, 60000); // Poll every 5 seconds
 		return () => {
 			clearInterval(interval);
