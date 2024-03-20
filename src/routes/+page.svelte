@@ -5,6 +5,7 @@
 	let ClientPop = 0;
 	let ImageName = "/AishaPop/1.jpg";
 	let OnClick = false;
+	let audio = new Audio("/AishaPop/hey.ogg");
 function ClearLimit() {
 		AddLimit = 0;
 	}
@@ -12,7 +13,7 @@ function ClearLimit() {
 
 		if(AddLimit >= 100) {
 			alert('U spam too much');
-			throw new Error('U spam too much');
+			throw new Error('U spam too much,wait 1 min');
 		}
 		else {
 		const response = await fetch('/api/add',
@@ -33,6 +34,25 @@ function ClearLimit() {
 		}}
 	}
 
+	async function GetData() {
+			const response = await fetch('/api/add',
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ AishaPop:true, Authentication: 'trueButNotReally'})
+				}
+			);
+			AddLimit += 1;
+			const data = await response.json();
+			if (data.error) {
+				alert(data.error);
+			} else {
+				ClientPop = data.Totalpop;
+			}}
+
+
 	if(OnClick) {
 		ImageName = "/AishaPop/2.jpg";
 	}
@@ -43,15 +63,23 @@ function ClearLimit() {
 	function ImageChangePress() {
 
 			ImageName = "/AishaPop/2.jpg";
-
+		audio.play()
 	}
 	function ImageChangeDePress() {
 
 			ImageName = "/AishaPop/1.jpg";
+		audio.play()
 
 	}
+
+
+
+
+
+
 	onMount(() => {
-		fetchData();
+
+		GetData();
 		let interval = setInterval(ClearLimit, 60000); // Poll every 5 seconds
 		return () => {
 			clearInterval(interval);
@@ -68,12 +96,13 @@ function ClearLimit() {
 	<Navbar />
 	<div class="w-full mx-auto ">
 
-		<button on:click={fetchData} on:touchstart={fetchData}  on:mousedown ={ImageChangePress} on:mouseup ={ImageChangeDePress} on:touchstart|preventDefault ={ImageChangePress} on:touchend|preventDefault ={ImageChangeDePress}  class="mx-auto bg-emerald-600 w-fit flex flex-col items-center">
+		<button on:click={fetchData} on:touchstart={fetchData} on:keydown={fetchData}  on:mousedown ={ImageChangePress} on:mouseup ={ImageChangeDePress} on:touchstart|preventDefault ={ImageChangePress} on:touchend|preventDefault ={ImageChangeDePress} on:keydown|preventDefault={ImageChangePress} on:keyup|preventDefault={ImageChangeDePress} class="mx-auto bg-[#ecfee6] h-screen w-full flex flex-col items-center">
 			<h1 class="mx-auto text-center text-4xl absolute bottom-10">Aisha Pop
 				<p class="bottom-0">{ClientPop}</h1>
 
-			<img src={ImageName} class="mx-auto max-h-[92vh] w-full   " alt="1" id="pic"/>
+			<img src={ImageName} class="mx-auto max-h-[92vh] w-auto   " alt="1" id="pic"/>
 		</button>
+		<audio id="audio" src="/AishaPop/hey.ogg" hidden></audio>
 	</div>
 
 </body>
