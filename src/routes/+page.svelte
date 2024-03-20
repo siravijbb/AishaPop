@@ -13,8 +13,8 @@
 	}
 	async function fetchData() {
 
-		if(AddLimit >= 100) {
-			alert('U spam too much');
+		if(AddLimit >= 300) {
+			alert('U spam too much,wait 1 min');
 			throw new Error('U spam too much,wait 1 min');
 		}
 		else {
@@ -93,8 +93,10 @@
 	<div class="w-full mx-auto ">
 
 		<button on:click={fetchData} on:touchstart={fetchData} on:keyup={fetchData}  on:mousedown ={ImageChangePress} on:mouseup ={ImageChangeDePress} on:touchstart|preventDefault ={ImageChangePress} on:touchend|preventDefault ={ImageChangeDePress} on:keydown|preventDefault={ImageChangePress} on:keyup|preventDefault={ImageChangeDePress} class="mx-auto bg-[#ecfee6] h-screen w-full flex flex-col items-center">
-			<h1 class="mx-auto text-center text-4xl absolute bottom-10">Aisha Pop
-				<p class="bottom-0">{ClientPop}</h1>
+			<h1 class="mx-auto text-center text-4xl absolute bottom-6">Aisha Pop
+				<p class="bottom-0">{ClientPop}
+			<small class="block text-sm">limit 300 ครั้งต่อนาที</small>
+					<small class="block text-sm">ถ้าไม่ขึ้นลองrefreshดูนะครับ</small></h1>
 
 			<img src={ImageName} class="mx-auto max-h-[92vh] w-auto   " alt="1" id="pic"/>
 		</button>
