@@ -5,7 +5,6 @@
 	let ClientPop = 0;
 	let ImageName = "/AishaPop/1.jpg";
 	let OnClick = false;
-	let audio = new Audio("/AishaPop/hey.ogg");
 function ClearLimit() {
 		AddLimit = 0;
 	}
@@ -63,22 +62,14 @@ function ClearLimit() {
 	function ImageChangePress() {
 
 			ImageName = "/AishaPop/2.jpg";
-		audio.play()
+
 	}
 	function ImageChangeDePress() {
 
 			ImageName = "/AishaPop/1.jpg";
-		audio.play()
 
 	}
-
-
-
-
-
-
 	onMount(() => {
-
 		GetData();
 		let interval = setInterval(ClearLimit, 60000); // Poll every 5 seconds
 		return () => {
@@ -102,7 +93,6 @@ function ClearLimit() {
 
 			<img src={ImageName} class="mx-auto max-h-[92vh] w-auto   " alt="1" id="pic"/>
 		</button>
-		<audio id="audio" src="/AishaPop/hey.ogg" hidden></audio>
 	</div>
 
 </body>
