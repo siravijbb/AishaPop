@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-let TotalPop = 9590;
+let TotalPop = 62050;
 /// STATE
 /// 0:Terminated Service at Station
 /// 1:Arriving Station
